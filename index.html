@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="icon/favicon.2f7d8939.ico">
-    <link rel="stylesheet" href="index.2643c2ed.css">
+    <link rel="stylesheet" href="index.184e6cb4.css">
     <script src="d3.9f50bb48.js"></script>
 <script src="d3.min.b1281764.js"></script>
-    <script type="module" src="app.7d399d96.js"></script>
+    <script type="module" src="app.9dd5419e.js"></script>
 <script type="module" src="topojson-client.e1f0ee48.js"></script>
 <script type="module" src="861.7ac133e6.js"></script>
 <script type="module" src="827.d4b51baf.js"></script>
@@ -22,24 +22,22 @@
                 <h3 class="nav-title">台灣歷年總統 都幾？</h3>
             </div>
 
-            <div class="filter">
-                <h6>選擇年份</h6>
+            <h6>選擇年份</h6>
 
-                <div class="select year-select">
-                    <div class="selected year-selected" data-value="" id="year"></div>
+            <div class="select year-select">
+                <div class="selected year-selected" data-value="" id="year"></div>
+                <ul class="options"></ul>
+            </div>
+
+            <div class="area-select">
+                <div class="select city-select">
+                    <div class="selected city-selected" data-value="" id="city"></div>
                     <ul class="options"></ul>
                 </div>
 
-                <div class="area-select">
-                    <div class="select city-select">
-                        <div class="selected city-selected" data-value="" id="city"></div>
-                        <ul class="options"></ul>
-                    </div>
-
-                    <div class="select dist-select">
-                        <div class="selected dist-selected" data-value="" id="dist"></div>
-                        <ul class="options"></ul>
-                    </div>
+                <div class="select dist-select">
+                    <div class="selected dist-selected" data-value="" id="dist"></div>
+                    <ul class="options"></ul>
                 </div>
             </div>
         </div>
@@ -140,18 +138,8 @@
                     <h5>投票總覽</h5>
 
                     <table id="area-list">
-                        <thead>
-                            <tr>
-                                <th>地區</th>
-                                <th>得票率</th>
-                                <th>當選人</th>
-                                <th>投票數</th>
-                                <th>投票率</th>
-                                <th></th>
-                            </tr>
-                        </thead>
+                        <thead></thead>
                         <tbody></tbody>
-                        
                     </table>
                 </section>
 
