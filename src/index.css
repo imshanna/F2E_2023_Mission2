@@ -18,8 +18,12 @@ body {
     color: #334155;
 }
 
+ul {
+    list-style-type: none;
+}
+
 h3 {
-    font-size: 28px;
+    font-size: clamp(25.41px, 4.86vw, 28px);
 }
 
 h5 {
@@ -28,10 +32,6 @@ h5 {
 
 h6 {
     font-size: 16px;
-}
-
-ul {
-    list-style-type: none;
 }
 
 small {
@@ -69,21 +69,27 @@ header {
 .nav-left {
     display: flex;
     align-items: center;
-    gap: 24px;
+}
+
+.nav-left h6 {
+    margin-right: 12px;
+    white-space: nowrap;
 }
 
 .nav-logo-wrap {
     display: flex;
     gap: 8px;
+    margin-right: 24px;
 }
 
 .nav-logo {
-    width: 53px;
+    width: clamp(40px, 9.2vw, 53px);
 }
 
 .nav-title {
     font-family: 'MantouSans', 'Noto Sans TC', sans-serif;
     font-weight: 400;
+    white-space: nowrap;
 }
 
 .social-link {
@@ -98,14 +104,6 @@ header {
 
 .social-link img:hover {
     transform: scale(1.2);
-}
-
-/* Header - filter */
-
-.filter {
-    display: flex;
-    align-items: center;
-    gap: 16px;
 }
 
 .select {
@@ -139,14 +137,22 @@ header {
     position: absolute;
     top: calc(100% + 1px);
     left: 0;
-    width: 185px;
-    max-height: 496px;
+    width: 100%;
+    max-height: 450px;
     overflow-y: auto;
     padding: 8px 0;
     background: #FFF;
     border: 1px solid #DEE2E6;
     border-radius: 8px;
     display: none;
+}
+
+.city-select .options {
+    width: 85%;
+}
+
+.year-select .options {
+    z-index: 1001;
 }
 
 .select.active .options {
@@ -165,21 +171,23 @@ header {
 
 .area-select {
     display: flex;
+    width: 423px;
 }
 
 .year-select {
     width: 118px;
     border-radius: 500px;
-}
-
-.dist-select {
-    width: 194px;
-    border-radius: 0 500px 500px 0;
+    margin-right: 16px;
 }
 
 .city-select {
-    width: 229px;
+    width: 50%;
     border-radius: 500px 0 0 500px;
+}
+
+.dist-select {
+    width: 50%;
+    border-radius: 0 500px 500px 0;
 }
 
 .city-select .options {
@@ -260,6 +268,7 @@ main h3 {
 
 .pres-votes-wrap-i {
     display: flex;
+    flex-wrap: wrap;
     gap: 16px;
 }
 
@@ -267,7 +276,7 @@ main h3 {
     background: #FFF;
     border-radius: 12px;
     padding: 24px 24px;
-    flex: 1 1 50%;
+    flex-grow: 1;
 }
 
 .cand-info {
@@ -291,13 +300,14 @@ main h3 {
 
 .cand-list {
     display: flex;
-    justify-content: space-around;
-    gap: 40px;
+    flex-wrap: wrap;
+    gap: 16px;
     margin-bottom: 28px;
 }
 
 .cand {
     display: flex;
+    flex-grow: 1;
     gap: 12px;
 }
 
@@ -330,7 +340,9 @@ main h3 {
 
 .all-votes {
     display: flex;
-    gap: 10%;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap:24px;
 }
 
 .donut-wrap {
@@ -357,6 +369,7 @@ main h3 {
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: 30px;
+    row-gap: 8px;
 }
 
 .votes-data-list p {
@@ -379,6 +392,11 @@ main h3 {
 .title-box {
     display: flex;
     justify-content: space-between;
+    white-space: nowrap;
+}
+
+.title-box h5 {
+    margin-right: 16px;
 }
 
 .dot {
@@ -477,7 +495,10 @@ tbody tr:hover {
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 8px;
+}
+
+.td-elected span.font-2{
+    color: #64748B;
 }
 
 .td-arrow::after{
@@ -488,7 +509,7 @@ tbody tr:hover {
 
 table .proportion-bar {
     height: 8px;
-    margin-right: 24px;
+    margin-right: 8%;
 }
 
 /* Map */
@@ -524,27 +545,7 @@ table .proportion-bar {
     background: #FFF;
     border-radius: 8px;
     padding: 6px 3px;
-    max-width: 75px;
-}
-
-.city {
-    stroke: gray;
-    stroke-width: 0px;
-}
-
-.city:hover, .island object:hover {
-    filter: brightness(1.1);
-}
-
-.city-name {
-    fill: #FFF;
-    text-shadow: -1px -1px #334155,
-                 1px 1px #334155,
-                 1px -1px #334155,
-                 -1px 1px #334155;
-    font-weight: 700;
-    text-anchor: middle;
-    pointer-events: none;
+    width: min(13.02vw, 75px);
 }
 
 .island-name {
@@ -558,4 +559,87 @@ table .proportion-bar {
                  -1px 1px #334155;
     font-weight: 700;
     pointer-events: none;
+    font-size: min(2.77vw, 16px);
+}
+
+object {
+    width: 100%;
+}
+
+.city {
+    stroke: gray;
+    stroke-width: 0px;
+}
+
+.city:hover, .island object:hover {
+    filter: brightness(1.1);
+}
+
+.city.onclick {
+    stroke: #FFF;
+    stroke-width: 1.1px;
+}
+
+.city-name {
+    fill: #FFF;
+    text-shadow: -1px -1px #334155,
+                 1px 1px #334155,
+                 1px -1px #334155,
+                 -1px 1px #334155;
+    font-weight: 700;
+    text-anchor: middle;
+    pointer-events: none;
+}
+
+@media only screen and (max-width: 1340px) {
+    .page-wrap {
+        flex-direction: column;
+    }
+
+    #map {
+        position: relative;
+        top: 0px;
+        width: 100%;
+        height: 500px;
+    }
+}
+
+@media only screen and (max-width: 1210px) {
+    .social-link {
+        display: none;
+    }
+
+    .area-select {
+        width: 50%;
+    }
+
+    .nav-left {
+        flex-grow: 1;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .nav-left h6 {
+        display: none;
+    }
+
+    .party-votes-wrap {
+        flex-wrap: wrap;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .nav-left {
+        flex-wrap: wrap;
+        row-gap: 8px;
+    }
+
+    .area-select {
+        width: 100%;
+    }
+
+    .year-select {
+        flex-grow: 1;
+        margin-right: 0px;
+    }
 }

@@ -72,13 +72,16 @@ export function drawMap(){
 
         const [[x0, y0], [x1, y1]] = pathCalc.bounds(d);
         const [x, y] = pathCalc.centroid(d);
-        // const [x, y] = d3.pointer(e);
 
         svg.transition().duration(750).call(
             zoom.transform,
             d3.zoomIdentity.translate(width / 2, height / 2).scale(0.9*(width/(x1-x0))).translate(-x,-y)
         )
 
+        const cityOnclick = document.querySelector(".onclick");
+        cityOnclick && cityOnclick.classList.remove("onclick");
+        this.classList.add("onclick");
+        
         link.toCity(d.properties.COUNTYNAME);
     }
 

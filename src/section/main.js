@@ -17,11 +17,12 @@ function addProportionBar(partyList){
 function loadAreaVotes(areaData, islink){
     const candData = getCandData();
     const tbody = document.querySelector("#area-list tbody");
+    const thead = document.querySelector("#area-list thead");
     const proportionBar = addProportionBar(Object.keys(candData)); 
     const currentCity = get.city(),
           currentDist = get.dist();
-    
-    tbody.innerHTML = "";
+
+    let lastWidth = window.innerWidth;
     let linkTo;
 
     if(currentCity === "全國"){
@@ -36,38 +37,112 @@ function loadAreaVotes(areaData, islink){
         document.querySelector(".area-votes h5").innerHTML = "各村里投票總覽";
     }
 
-    Object.keys(areaData).forEach((area) => {
-        const data = areaData[area];
-        const tr = document.createElement("tr");
-        tr.setAttribute("data-area", area);
-
-        tr.innerHTML = `
-            <td><h6>${area}</h6></td>
-            <td>
-                <div class="proportion-bar">${proportionBar}</div>
-            </td>
-            <td class="td-elected">
-                <div class="table-number"></div>
-                <span></span>
-            </td>
-            <td>${data.total.toLocaleString()}</td>
-            <td>${data.rate}%</td>
-            <td class="td-arrow"></td>
+    function tableS() {
+        tbody.innerHTML = "";
+        thead.innerHTML = `
+            <tr>
+                <th style="min-width: 66px;">地區</th>
+                <th style="width: 75%;"></th>
+                <th></th>
+            </tr>
         `
-        const max = maxParty();
 
-        tr.querySelectorAll(".proportion-bar div").forEach((div) => {
-            const party = div.dataset.party;
-            div.style.width = `${data[party].rate}%`;
-
-            max(data[party].total, party);
+        Object.keys(areaData).forEach((area) => {
+            const data = areaData[area];
+            const tr = document.createElement("tr");
+            tr.setAttribute("data-area", area);
+    
+            tr.innerHTML = `
+                <td><h6>${area}</h6></td>
+                <td>
+                    <div class="td-elected">
+                        <span class="font-2">當選人</span>
+                        <div class="table-number"></div>
+                        <span></span>
+                    </div>
+                    <div class="proportion-bar">${proportionBar}</div>
+                </td>
+                <td class="td-arrow"></td>
+            `
+            const max = maxParty();
+    
+            tr.querySelectorAll(".proportion-bar div").forEach((div) => {
+                const party = div.dataset.party;
+                div.style.width = `${data[party].rate}%`;
+    
+                max(data[party].total, party);
+            })
+            
+            tr.querySelector(".td-elected").style.marginBottom = "8px";
+            tr.querySelector(".td-elected .table-number").innerHTML = candData[max()].number;
+            tr.querySelector(".td-elected .table-number").style.background = partyColor[max()];
+            tr.querySelector(".td-elected span:last-child").innerHTML = candData[max()].name;
+            
+            tbody.appendChild(tr);
         })
+    }
 
-        tr.querySelector(".td-elected .table-number").innerHTML = candData[max()].number;
-        tr.querySelector(".td-elected .table-number").style.background = partyColor[max()];
-        tr.querySelector(".td-elected span").innerHTML = candData[max()].name;
-        
-        tbody.appendChild(tr);
+    function tableL() {
+        tbody.innerHTML = "";
+        thead.innerHTML = `
+            <tr>
+                <th>地區</th>
+                <th style="width:25%">得票率</th>
+                <th>當選人</th>
+                <th>投票數</th>
+                <th>投票率</th>
+                <th></th>
+            </tr>
+        `
+        Object.keys(areaData).forEach((area) => {
+            const data = areaData[area];
+            const tr = document.createElement("tr");
+            tr.setAttribute("data-area", area);
+    
+            tr.innerHTML = `
+                <td><h6>${area}</h6></td>
+                <td>
+                    <div class="proportion-bar">${proportionBar}</div>
+                </td>
+                <td class="td-elected">
+                    <div class="table-number"></div>
+                    <span></span>
+                </td>
+                <td>${data.total.toLocaleString()}</td>
+                <td>${data.rate}%</td>
+                <td class="td-arrow"></td>
+            `
+            const max = maxParty();
+    
+            tr.querySelectorAll(".proportion-bar div").forEach((div) => {
+                const party = div.dataset.party;
+                div.style.width = `${data[party].rate}%`;
+    
+                max(data[party].total, party);
+            })
+    
+            tr.querySelector(".td-elected .table-number").innerHTML = candData[max()].number;
+            tr.querySelector(".td-elected .table-number").style.background = partyColor[max()];
+            tr.querySelector(".td-elected span").innerHTML = candData[max()].name;
+            
+            tbody.appendChild(tr);
+        })
+    }
+
+    if(window.innerWidth > 576){
+        tableL();
+    }else{
+        tableS();
+    }
+
+    window.addEventListener("resize", () => {
+        if(lastWidth <= 576 && window.innerWidth > 576){
+            tableL();
+        }else if(lastWidth > 576 && window.innerWidth <= 576){
+            tableS();
+        }
+
+        lastWidth = window.innerWidth; 
     })
 
     if(islink){
