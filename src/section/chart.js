@@ -23,7 +23,10 @@ const totalData = [['1996', [['國民黨', 5813699, 54.0],
                             ['親民黨', 1576861, 12.83]]], 
                   ['2020', [['國民黨', 5522119, 38.61], 
                             ['民進黨', 8170231, 57.13],
-                            ['親民黨', 608590, 4.26]]]];
+                            ['親民黨', 608590, 4.26]]],
+                  ['2024', [['國民黨', 4671021, 33.49],
+                            ['民進黨', 5586019, 40.05],
+                            ['民眾黨', 3690466, 26.46]]]];
 
 const yearList = totalData.map(d => d[0]);
 const partyList = totalData[0][1].map(d => d[0]);
@@ -157,7 +160,7 @@ export function drawBarChart(){
     // Create legend
     d3.selectAll(".party-votes .party-list")
     .selectAll()
-    .data(["國民黨","民進黨","無黨籍","親民黨","其他"])
+    .data(["國民黨","民進黨","無黨籍","親民黨","民眾黨","其他"])
     .join("div")
     .attr("class", "dot")
     .style("background", d => partyColor[d])

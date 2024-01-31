@@ -117,7 +117,7 @@ document.addEventListener("click", () => {
 })
 
 // Init value
-yearSelected.dataset.value = "2020";
+yearSelected.dataset.value = "2024";
 
 drawBarChart();
 drawLineChart();
