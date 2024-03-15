@@ -3,8 +3,9 @@
 
 [UI 設計師：jhen](https://2023.thef2e.com/users/12061579704041679194?week=2) | [設計稿](https://www.figma.com/file/WlsKcXrmUd0lL4f8p3d122/2023-The-F2E-%E7%B8%BD%E7%B5%B1?type=design&node-id=4818-2&mode=design&t=xuqOXefpZWHck5Dm-0) | [Demo](https://imshanna.github.io/F2E_2023_Mission2/)
 
-練習用，邊寫邊熟悉 javascript  
-雖然趕不上投稿期限 但透過這次的主題學到很多新東西！  
+查詢歷年來台灣總統大選各地區投票狀況、政黨得票資料。  
+練習用，邊寫邊熟悉 javascript，  
+雖然趕不上投稿期限，但透過這次的主題學到很多新東西！  
 
 ## 使用技術
 - 圖表、地圖：D3.js

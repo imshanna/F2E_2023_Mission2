@@ -119,6 +119,4 @@ export function drawMap(){
             link.toCity(city);
         })
     })
-
-    
 }
