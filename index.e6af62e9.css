@@ -20,10 +20,6 @@ ul {
     list-style-type: none;
 }
 
-h3 {
-    font-size: clamp(25.41px, 4.86vw, 28px);
-}
-
 h5 {
     font-size: 20px;
 }
@@ -81,10 +77,11 @@ header {
 }
 
 .nav-logo {
-    width: clamp(40px, 9.2vw, 53px);
+    width: clamp(37.1px, 9.2vw, 53px);
 }
 
 .nav-title {
+    font-size: clamp(19.66px, 4.86vw, 28px);
     font-family: 'MantouSans', 'Noto Sans TC', sans-serif;
     font-weight: 400;
     white-space: nowrap;
@@ -240,6 +237,7 @@ main {
 
 main h3 {
     margin-bottom: 24px;
+    font-size: clamp(25.41px, 4.86vw, 28px);
 }
 
 .pres-votes-wrap, .party-votes-wrap section {
@@ -638,6 +636,25 @@ object {
 
     .year-select {
         flex-grow: 1;
+        flex-basis: 80px;
         margin-right: 0px;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    main {
+        padding: 32px 16px;
+    }
+
+    header {
+        padding: 9px 16px;
+    }
+    
+    .select {
+        font-size: 14px;
+    }
+
+    .nav-logo-wrap {
+        margin-right: 16px;
     }
 }

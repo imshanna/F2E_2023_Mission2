@@ -4,17 +4,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="icon/favicon.2f7d8939.ico">
-    <link rel="stylesheet" href="index.184e6cb4.css">
-    <script src="d3.9f50bb48.js"></script>
-<script src="d3.min.b1281764.js"></script>
-    <script type="module" src="app.8c76a311.js"></script>
-<script type="module" src="topojson-client.e1f0ee48.js"></script>
-<script type="module" src="861.90461c64.js"></script>
-<script type="module" src="827.961fb932.js"></script>
-<script type="module" src="index.1b5cdcff.js"></script>
+    <link rel="stylesheet" href="index.e6af62e9.css">
     <title>台灣歷年總統 都幾？</title>
+
+    <style>
+        body {
+            overflow-y: hidden;
+        }
+
+        @keyframes loading {
+            0% {
+                width: 0%;
+            }
+            15% {
+                width: 0%;
+            }
+            100% {
+                width: 100%;
+            }
+        }
+
+        #loader {
+            position: fixed;
+            z-index: 9999;
+            height: 100vh;
+            width: 100vw;
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+            transition: .42s ease;
+        }
+
+        .loader-outside {
+            width: 110px;
+            background: #E9ECEF;
+            border-radius: 5px;
+        }
+
+        .loader-inside {
+            height: 6px;
+            background: #D4009B;
+            border-radius: 5px;
+            animation: loading  .9s infinite;
+        }
+    </style>
 </head>
 <body>
+    <script>
+        window.onload = (e) => {
+            const body = document.querySelector("body");
+            const loader = document.getElementById("loader");
+            loader.style.opacity = 0;
+
+            setTimeout(()=> {
+                body.style.overflowY = "unset";
+                loader.remove();
+            }, 420)
+        };
+    </script>
+
+    <div id="loader">
+        <img src="icon/logo.def6a14d.svg" alt="" width="110px">
+        <div class="loader-outside">
+            <div class="loader-inside"></div>
+        </div>
+    </div>
+
     <header>
         <div class="nav-left">
             <div class="nav-logo-wrap">
@@ -148,5 +207,13 @@
             <footer class="font-2">版權所有©2023 台灣歷年總統 都幾？</footer>
         </div>
     </div>
+
+    <script src="d3.9f50bb48.js"></script>
+<script src="d3.min.b1281764.js"></script>
+    <script type="module" src="app.c0fd65d5.js"></script>
+<script type="module" src="topojson-client.e1f0ee48.js"></script>
+<script type="module" src="861.90461c64.js"></script>
+<script type="module" src="827.961fb932.js"></script>
+<script type="module" src="index.1b5cdcff.js"></script>
 </body>
 </html>
