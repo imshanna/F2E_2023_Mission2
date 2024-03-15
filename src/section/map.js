@@ -8,7 +8,6 @@ export function drawMap(){
     const width = 500, 
           height = 854;
 
-    d3.selectAll("#map .island svg").remove();
     d3.select("#map svg").remove();
 
     const svg = d3.select("#map")
